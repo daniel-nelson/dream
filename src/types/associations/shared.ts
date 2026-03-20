@@ -86,7 +86,7 @@ type NonKyselySupportedSupplementalWhereClauseValues<
   Column,
   ModelPropertyType = ModelColumnType<Schema, TableName, Column>,
   ColumnType = TableColumnType<Schema, TableName, Column>,
-  EnumTypeArray extends string[] | null = TableColumnEnumTypeArray<Schema, TableName, Column>,
+  EnumTypeArray extends readonly string[] | null = TableColumnEnumTypeArray<Schema, TableName, Column>,
   //
   PermanentOpsValTypes = null | readonly [],
   OpsValType = EnumTypeArray extends null
@@ -101,7 +101,7 @@ type NonKyselySupportedSupplementalWhereClauseValues<
             : ModelPropertyType extends number | string
               ? ModelPropertyType | PermanentOpsValTypes
               : never
-    : EnumTypeArray extends string[]
+    : EnumTypeArray extends readonly string[]
       ? EnumTypeArray[number] | PermanentOpsValTypes
       : never,
   //
@@ -151,7 +151,7 @@ type NonKyselySupportedSupplementalWhereClauseValues<
                       | OpsStatement<KyselyComparisonOperatorExpression, string, any>
                       | OpsStatement<TrigramOperator, OpsValType, ExtraSimilarityArgs>
                   : never
-    : EnumTypeArray extends string[]
+    : EnumTypeArray extends readonly string[]
       ? EnumTypeArray | OpsStatement<KyselyComparisonOperatorExpression, OpsValType, any>
       : never,
 > = PartialTypes extends never

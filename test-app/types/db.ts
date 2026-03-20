@@ -71,12 +71,14 @@ export type AAndBStiTypes = 'StiA' | 'StiB'
 export const AAndBStiTypesValues = ['StiA', 'StiB'] as const
 
 export type ArrayType<T> =
-  ArrayTypeImpl<T> extends (infer U)[] ? U[] : ArrayTypeImpl<T>
+  ArrayTypeImpl<T> extends readonly (infer U)[]
+    ? readonly U[]
+    : ArrayTypeImpl<T>
 
 export type ArrayTypeImpl<T> =
   T extends ColumnType<infer S, infer I, infer U>
-    ? ColumnType<S[], I[], U[]>
-    : T[]
+    ? ColumnType<readonly S[], readonly I[], readonly U[]>
+    : readonly T[]
 
 export type BalloonColorsEnum = 'blue' | 'green' | 'red'
 
@@ -140,7 +142,7 @@ export type Int8 = ColumnType<
 
 export type Json = JsonValue
 
-export type JsonArray = JsonValue[]
+export type JsonArray = readonly JsonValue[]
 
 export type JsonObject = {
   [x: string]: JsonValue | undefined
@@ -497,18 +499,18 @@ export interface ModelForOpenapiTypeSpecs {
   endTime: ClockTime | null
   favoriteBigint: Int8 | null
   favoriteBigints: ArrayType<Int8> | null
-  favoriteBooleans: boolean[] | null
+  favoriteBooleans: readonly boolean[] | null
   favoriteCitext: string | null
-  favoriteCitexts: string[] | null
+  favoriteCitexts: readonly string[] | null
   favoriteDates: ArrayType<Timestamp> | null
   favoriteDatetimes: ArrayType<Timestamp> | null
-  favoriteIntegers: number[] | null
+  favoriteIntegers: readonly number[] | null
   favoriteJsonbs: ArrayType<Json> | null
   favoriteJsons: ArrayType<Json> | null
   favoriteNumerics: ArrayType<Numeric> | null
-  favoriteTexts: string[] | null
+  favoriteTexts: readonly string[] | null
   favoriteTreats: ArrayType<PetTreatsEnum> | null
-  favoriteUuids: string[] | null
+  favoriteUuids: readonly string[] | null
   id: Generated<Int8>
   jsonData: Json | null
   jsonbData: Json | null
@@ -516,7 +518,7 @@ export interface ModelForOpenapiTypeSpecs {
   likesWalks: boolean | null
   myConstrainedField: string | null
   name: string | null
-  nicknames: string[] | null
+  nicknames: readonly string[] | null
   notes: string | null
   optionalUuid: Generated<string | null>
   passwordDigest: string
@@ -524,25 +526,25 @@ export interface ModelForOpenapiTypeSpecs {
   requiredCollarCountInt: Generated<number>
   requiredFavoriteBigint: Generated<Int8>
   requiredFavoriteBigints: Generated<ArrayType<Int8>>
-  requiredFavoriteBooleans: Generated<boolean[]>
+  requiredFavoriteBooleans: Generated<readonly boolean[]>
   requiredFavoriteCitext: Generated<string>
-  requiredFavoriteCitexts: Generated<string[]>
+  requiredFavoriteCitexts: Generated<readonly string[]>
   requiredFavoriteDates: Generated<ArrayType<Timestamp>>
   requiredFavoriteDatetimes: Generated<ArrayType<Timestamp>>
-  requiredFavoriteIntegers: Generated<number[]>
+  requiredFavoriteIntegers: Generated<readonly number[]>
   requiredFavoriteJsonbs: Generated<ArrayType<Json>>
   requiredFavoriteJsons: Generated<ArrayType<Json>>
   requiredFavoriteNumerics: Generated<ArrayType<Numeric>>
-  requiredFavoriteTexts: Generated<string[]>
-  requiredFavoriteUuids: Generated<string[]>
+  requiredFavoriteTexts: Generated<readonly string[]>
+  requiredFavoriteUuids: Generated<readonly string[]>
   requiredJsonData: Generated<Json>
   requiredJsonbData: Generated<Json>
-  requiredNicknames: Generated<string[]>
+  requiredNicknames: Generated<readonly string[]>
   species: SpeciesTypesEnum | null
   startTime: ClockTime | null
   timeWithZone: ClockTimeTz | null
-  times: ClockTime[] | null
-  timesWithZone: ClockTimeTz[] | null
+  times: ArrayType<ClockTime> | null
+  timesWithZone: ArrayType<ClockTimeTz> | null
   updatedAt: Generated<Timestamp>
   uuid: Generated<string>
   volume: Numeric | null
@@ -608,7 +610,7 @@ export interface ModelWithSerialPrimaryKeys {
 export interface Pets {
   createdAt: Timestamp
   deletedAt: Timestamp | null
-  favoriteDaysOfWeek: number[] | null
+  favoriteDaysOfWeek: readonly number[] | null
   favoriteTreats: ArrayType<CatTreats> | null
   id: Generated<Int8>
   name: string | null
@@ -860,7 +862,7 @@ export interface Users {
   encryptedSecret: string | null
   favoriteDates: ArrayType<Timestamp> | null
   favoriteDatetimes: ArrayType<Timestamp> | null
-  favoriteNumbers: number[] | null
+  favoriteNumbers: readonly number[] | null
   favoriteWord: string | null
   featuredPostPosition: number | null
   grams: number | null

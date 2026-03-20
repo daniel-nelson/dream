@@ -1,3 +1,7 @@
+## 2.6.0
+
+- TYPE BREAKING: array columns read from the database are readonly (protects against update-in-place of arrays, which don't register as dirty)
+
 ## 2.5.5
 
 - add missing `skipHooks` support for `createOrFindBy` and `findOrCreateBy`
