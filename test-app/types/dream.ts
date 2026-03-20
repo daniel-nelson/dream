@@ -145,7 +145,7 @@ export const schema = {
       material: {
         coercedType: {} as BalloonLineMaterialsEnum | null,
         enumType: {} as BalloonLineMaterialsEnum,
-        enumArrayType: [] as BalloonLineMaterialsEnum[],
+        enumArrayType: [] as readonly BalloonLineMaterialsEnum[],
         enumValues: BalloonLineMaterialsEnumValues,
         dbType: 'balloon_line_materials_enum',
         allowNull: true,
@@ -377,7 +377,7 @@ export const schema = {
       color: {
         coercedType: {} as BalloonColorsEnum | null,
         enumType: {} as BalloonColorsEnum,
-        enumArrayType: [] as BalloonColorsEnum[],
+        enumArrayType: [] as readonly BalloonColorsEnum[],
         enumValues: BalloonColorsEnumValues,
         dbType: 'balloon_colors_enum',
         allowNull: true,
@@ -411,9 +411,9 @@ export const schema = {
         isArray: false,
       },
       multicolor: {
-        coercedType: {} as BalloonColorsEnum[] | null,
+        coercedType: {} as readonly BalloonColorsEnum[] | null,
         enumType: {} as BalloonColorsEnum,
-        enumArrayType: [] as BalloonColorsEnum[],
+        enumArrayType: [] as readonly BalloonColorsEnum[],
         enumValues: BalloonColorsEnumValues,
         dbType: 'balloon_colors_enum[]',
         allowNull: true,
@@ -458,7 +458,7 @@ export const schema = {
       shapableType: {
         coercedType: {} as ShapableTypesEnum | null,
         enumType: {} as ShapableTypesEnum,
-        enumArrayType: [] as ShapableTypesEnum[],
+        enumArrayType: [] as readonly ShapableTypesEnum[],
         enumValues: ShapableTypesEnumValues,
         dbType: 'shapable_types_enum',
         allowNull: true,
@@ -467,7 +467,7 @@ export const schema = {
       type: {
         coercedType: {} as BalloonTypesEnum,
         enumType: {} as BalloonTypesEnum,
-        enumArrayType: [] as BalloonTypesEnum[],
+        enumArrayType: [] as readonly BalloonTypesEnum[],
         enumValues: BalloonTypesEnumValues,
         dbType: 'balloon_types_enum',
         allowNull: false,
@@ -588,7 +588,7 @@ export const schema = {
       locale: {
         coercedType: {} as LocalesEnum,
         enumType: {} as LocalesEnum,
-        enumArrayType: [] as LocalesEnum[],
+        enumArrayType: [] as readonly LocalesEnum[],
         enumValues: LocalesEnumValues,
         dbType: 'locales_enum',
         allowNull: false,
@@ -606,7 +606,7 @@ export const schema = {
       localizableType: {
         coercedType: {} as CircularRefLocalizableTypesEnum,
         enumType: {} as CircularRefLocalizableTypesEnum,
-        enumArrayType: [] as CircularRefLocalizableTypesEnum[],
+        enumArrayType: [] as readonly CircularRefLocalizableTypesEnum[],
         enumValues: CircularRefLocalizableTypesEnumValues,
         dbType: 'circular_ref_localizable_types_enum',
         allowNull: false,
@@ -1631,7 +1631,7 @@ export const schema = {
       extraRateableType: {
         coercedType: {} as ExtraRateableTypesEnum,
         enumType: {} as ExtraRateableTypesEnum,
-        enumArrayType: [] as ExtraRateableTypesEnum[],
+        enumArrayType: [] as readonly ExtraRateableTypesEnum[],
         enumValues: ExtraRateableTypesEnumValues,
         dbType: 'extra_rateable_types_enum',
         allowNull: false,
@@ -1658,7 +1658,7 @@ export const schema = {
       type: {
         coercedType: {} as ExtraRatingTypesEnum,
         enumType: {} as ExtraRatingTypesEnum,
-        enumArrayType: [] as ExtraRatingTypesEnum[],
+        enumArrayType: [] as readonly ExtraRatingTypesEnum[],
         enumValues: ExtraRatingTypesEnumValues,
         dbType: 'extra_rating_types_enum',
         allowNull: false,
@@ -2313,7 +2313,7 @@ export const schema = {
       locale: {
         coercedType: {} as LocalesEnum,
         enumType: {} as LocalesEnum,
-        enumArrayType: [] as LocalesEnum[],
+        enumArrayType: [] as readonly LocalesEnum[],
         enumValues: LocalesEnumValues,
         dbType: 'locales_enum',
         allowNull: false,
@@ -2331,7 +2331,7 @@ export const schema = {
       localizableType: {
         coercedType: {} as LocalizableTypesEnum,
         enumType: {} as LocalizableTypesEnum,
-        enumArrayType: [] as LocalizableTypesEnum[],
+        enumArrayType: [] as readonly LocalizableTypesEnum[],
         enumValues: LocalizableTypesEnumValues,
         dbType: 'localizable_types_enum',
         allowNull: false,
@@ -2693,7 +2693,7 @@ export const schema = {
         isArray: false,
       },
       favoriteBigints: {
-        coercedType: {} as string[] | null,
+        coercedType: {} as readonly string[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2702,7 +2702,7 @@ export const schema = {
         isArray: true,
       },
       favoriteBooleans: {
-        coercedType: {} as boolean[] | null,
+        coercedType: {} as readonly boolean[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2720,7 +2720,7 @@ export const schema = {
         isArray: false,
       },
       favoriteCitexts: {
-        coercedType: {} as string[] | null,
+        coercedType: {} as readonly string[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2729,7 +2729,7 @@ export const schema = {
         isArray: true,
       },
       favoriteDates: {
-        coercedType: {} as CalendarDate[] | null,
+        coercedType: {} as readonly CalendarDate[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2738,7 +2738,7 @@ export const schema = {
         isArray: true,
       },
       favoriteDatetimes: {
-        coercedType: {} as DateTime[] | null,
+        coercedType: {} as readonly DateTime[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2747,7 +2747,7 @@ export const schema = {
         isArray: true,
       },
       favoriteIntegers: {
-        coercedType: {} as number[] | null,
+        coercedType: {} as readonly number[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2756,7 +2756,7 @@ export const schema = {
         isArray: true,
       },
       favoriteJsonbs: {
-        coercedType: {} as Json[] | null,
+        coercedType: {} as readonly Json[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2765,7 +2765,7 @@ export const schema = {
         isArray: true,
       },
       favoriteJsons: {
-        coercedType: {} as Json[] | null,
+        coercedType: {} as readonly Json[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2774,7 +2774,7 @@ export const schema = {
         isArray: true,
       },
       favoriteNumerics: {
-        coercedType: {} as number[] | null,
+        coercedType: {} as readonly number[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2783,7 +2783,7 @@ export const schema = {
         isArray: true,
       },
       favoriteTexts: {
-        coercedType: {} as string[] | null,
+        coercedType: {} as readonly string[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2792,16 +2792,16 @@ export const schema = {
         isArray: true,
       },
       favoriteTreats: {
-        coercedType: {} as PetTreatsEnum[] | null,
+        coercedType: {} as readonly PetTreatsEnum[] | null,
         enumType: {} as PetTreatsEnum,
-        enumArrayType: [] as PetTreatsEnum[],
+        enumArrayType: [] as readonly PetTreatsEnum[],
         enumValues: PetTreatsEnumValues,
         dbType: 'pet_treats_enum[]',
         allowNull: true,
         isArray: true,
       },
       favoriteUuids: {
-        coercedType: {} as string[] | null,
+        coercedType: {} as readonly string[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2873,7 +2873,7 @@ export const schema = {
         isArray: false,
       },
       nicknames: {
-        coercedType: {} as string[] | null,
+        coercedType: {} as readonly string[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2936,7 +2936,7 @@ export const schema = {
         isArray: false,
       },
       requiredFavoriteBigints: {
-        coercedType: {} as string[],
+        coercedType: {} as readonly string[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2945,7 +2945,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteBooleans: {
-        coercedType: {} as boolean[],
+        coercedType: {} as readonly boolean[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2963,7 +2963,7 @@ export const schema = {
         isArray: false,
       },
       requiredFavoriteCitexts: {
-        coercedType: {} as string[],
+        coercedType: {} as readonly string[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2972,7 +2972,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteDates: {
-        coercedType: {} as CalendarDate[],
+        coercedType: {} as readonly CalendarDate[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2981,7 +2981,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteDatetimes: {
-        coercedType: {} as DateTime[],
+        coercedType: {} as readonly DateTime[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2990,7 +2990,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteIntegers: {
-        coercedType: {} as number[],
+        coercedType: {} as readonly number[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -2999,7 +2999,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteJsonbs: {
-        coercedType: {} as Json[],
+        coercedType: {} as readonly Json[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3008,7 +3008,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteJsons: {
-        coercedType: {} as Json[],
+        coercedType: {} as readonly Json[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3017,7 +3017,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteNumerics: {
-        coercedType: {} as number[],
+        coercedType: {} as readonly number[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3026,7 +3026,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteTexts: {
-        coercedType: {} as string[],
+        coercedType: {} as readonly string[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3035,7 +3035,7 @@ export const schema = {
         isArray: true,
       },
       requiredFavoriteUuids: {
-        coercedType: {} as string[],
+        coercedType: {} as readonly string[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3062,7 +3062,7 @@ export const schema = {
         isArray: false,
       },
       requiredNicknames: {
-        coercedType: {} as string[],
+        coercedType: {} as readonly string[],
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3073,7 +3073,7 @@ export const schema = {
       species: {
         coercedType: {} as SpeciesTypesEnum | null,
         enumType: {} as SpeciesTypesEnum,
-        enumArrayType: [] as SpeciesTypesEnum[],
+        enumArrayType: [] as readonly SpeciesTypesEnum[],
         enumValues: SpeciesTypesEnumValues,
         dbType: 'species_types_enum',
         allowNull: true,
@@ -3098,7 +3098,7 @@ export const schema = {
         isArray: false,
       },
       times: {
-        coercedType: {} as ClockTime[] | null,
+        coercedType: {} as readonly ClockTime[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3107,7 +3107,7 @@ export const schema = {
         isArray: true,
       },
       timesWithZone: {
-        coercedType: {} as ClockTimeTz[] | null,
+        coercedType: {} as readonly ClockTimeTz[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3700,7 +3700,7 @@ export const schema = {
         isArray: false,
       },
       favoriteDaysOfWeek: {
-        coercedType: {} as number[] | null,
+        coercedType: {} as readonly number[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -3709,9 +3709,9 @@ export const schema = {
         isArray: true,
       },
       favoriteTreats: {
-        coercedType: {} as CatTreats[] | null,
+        coercedType: {} as readonly CatTreats[] | null,
         enumType: {} as CatTreats,
-        enumArrayType: [] as CatTreats[],
+        enumArrayType: [] as readonly CatTreats[],
         enumValues: CatTreatsValues,
         dbType: 'cat_treats[]',
         allowNull: true,
@@ -3756,7 +3756,7 @@ export const schema = {
       species: {
         coercedType: {} as Species | null,
         enumType: {} as Species,
-        enumArrayType: [] as Species[],
+        enumArrayType: [] as readonly Species[],
         enumValues: SpeciesValues,
         dbType: 'species',
         allowNull: true,
@@ -4824,7 +4824,7 @@ export const schema = {
       locale: {
         coercedType: {} as LocalesEnum,
         enumType: {} as LocalesEnum,
-        enumArrayType: [] as LocalesEnum[],
+        enumArrayType: [] as readonly LocalesEnum[],
         enumValues: LocalesEnumValues,
         dbType: 'locales_enum',
         allowNull: false,
@@ -4842,7 +4842,7 @@ export const schema = {
       localizableType: {
         coercedType: {} as PolymorphicTestsLocalizableTypesEnum,
         enumType: {} as PolymorphicTestsLocalizableTypesEnum,
-        enumArrayType: [] as PolymorphicTestsLocalizableTypesEnum[],
+        enumArrayType: [] as readonly PolymorphicTestsLocalizableTypesEnum[],
         enumValues: PolymorphicTestsLocalizableTypesEnumValues,
         dbType: 'polymorphic_tests_localizable_types_enum',
         allowNull: false,
@@ -5019,7 +5019,7 @@ export const schema = {
       taskableType: {
         coercedType: {} as PolymorphicTaskableTypesEnum,
         enumType: {} as PolymorphicTaskableTypesEnum,
-        enumArrayType: [] as PolymorphicTaskableTypesEnum[],
+        enumArrayType: [] as readonly PolymorphicTaskableTypesEnum[],
         enumValues: PolymorphicTaskableTypesEnumValues,
         dbType: 'polymorphic_taskable_types_enum',
         allowNull: false,
@@ -5111,7 +5111,7 @@ export const schema = {
       taskableType: {
         coercedType: {} as PolymorphicTaskableTypesEnum,
         enumType: {} as PolymorphicTaskableTypesEnum,
-        enumArrayType: [] as PolymorphicTaskableTypesEnum[],
+        enumArrayType: [] as readonly PolymorphicTaskableTypesEnum[],
         enumValues: PolymorphicTaskableTypesEnumValues,
         dbType: 'polymorphic_taskable_types_enum',
         allowNull: false,
@@ -5427,7 +5427,7 @@ export const schema = {
       workoutType: {
         coercedType: {} as WorkoutTypesEnum,
         enumType: {} as WorkoutTypesEnum,
-        enumArrayType: [] as WorkoutTypesEnum[],
+        enumArrayType: [] as readonly WorkoutTypesEnum[],
         enumValues: WorkoutTypesEnumValues,
         dbType: 'workout_types_enum',
         allowNull: false,
@@ -6141,7 +6141,7 @@ export const schema = {
       type: {
         coercedType: {} as ShapeTypesEnum,
         enumType: {} as ShapeTypesEnum,
-        enumArrayType: [] as ShapeTypesEnum[],
+        enumArrayType: [] as readonly ShapeTypesEnum[],
         enumValues: ShapeTypesEnumValues,
         dbType: 'shape_types_enum',
         allowNull: false,
@@ -6225,7 +6225,7 @@ export const schema = {
       taskableType: {
         coercedType: {} as PolymorphicTaskableTypesEnum | null,
         enumType: {} as PolymorphicTaskableTypesEnum,
-        enumArrayType: [] as PolymorphicTaskableTypesEnum[],
+        enumArrayType: [] as readonly PolymorphicTaskableTypesEnum[],
         enumValues: PolymorphicTaskableTypesEnumValues,
         dbType: 'polymorphic_taskable_types_enum',
         allowNull: true,
@@ -6234,7 +6234,7 @@ export const schema = {
       type: {
         coercedType: {} as AAndBStiTypes,
         enumType: {} as AAndBStiTypes,
-        enumArrayType: [] as AAndBStiTypes[],
+        enumArrayType: [] as readonly AAndBStiTypes[],
         enumValues: AAndBStiTypesValues,
         dbType: 'a_and_b_sti_types',
         allowNull: false,
@@ -6874,7 +6874,7 @@ export const schema = {
         isArray: false,
       },
       favoriteDates: {
-        coercedType: {} as CalendarDate[] | null,
+        coercedType: {} as readonly CalendarDate[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -6883,7 +6883,7 @@ export const schema = {
         isArray: true,
       },
       favoriteDatetimes: {
-        coercedType: {} as DateTime[] | null,
+        coercedType: {} as readonly DateTime[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,
@@ -6892,7 +6892,7 @@ export const schema = {
         isArray: true,
       },
       favoriteNumbers: {
-        coercedType: {} as number[] | null,
+        coercedType: {} as readonly number[] | null,
         enumType: null,
         enumArrayType: null,
         enumValues: null,

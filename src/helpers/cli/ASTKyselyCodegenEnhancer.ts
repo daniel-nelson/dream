@@ -31,6 +31,7 @@ export default class ASTKyselyCodegenEnhancer extends ASTConnectionBuilder {
     dbSourceFile = await this.replaceTimeFieldsInInterfaces(dbSourceFile)
     dbSourceFile = this.addMissingImports(dbSourceFile)
     dbSourceFile = this.replaceInt8Export(dbSourceFile)
+    dbSourceFile = this.makeArraysReadonly(dbSourceFile)
     dbSourceFile = this.sortExportedInterfacesTransformer(dbSourceFile)
     dbSourceFile = await this.addEnumValueExports(dbSourceFile)
     dbSourceFile = this.addDeprecatedDbClassExportForBackwardsCompatibility(dbSourceFile)
@@ -221,12 +222,13 @@ ${output}`)
       return f.createUnionTypeNode(updatedTypes)
     }
 
-    // Handle array syntax (e.g., string[])
+    // Handle array syntax (e.g., string[]) — produce ArrayType<ClockTime> to match
+    // how other non-primitive array types (Timestamp, Int8, etc.) are represented
     if (ts.isArrayTypeNode(typeNode)) {
       const elementType = this.isStringLikeType(typeNode.elementType, sourceFile)
         ? toTimeType()
         : this.replaceStringWithClockTimeType(typeNode.elementType, sourceFile, isTimeTz)
-      return f.createArrayTypeNode(elementType)
+      return f.createTypeReferenceNode(f.createIdentifier('ArrayType'), [elementType])
     }
 
     // Handle generic array syntax (e.g., Array<string>)
@@ -240,7 +242,7 @@ ${output}`)
       const nextArg = this.isStringLikeType(arg, sourceFile)
         ? toTimeType()
         : this.replaceStringWithClockTimeType(arg, sourceFile, isTimeTz)
-      return f.createTypeReferenceNode(f.createIdentifier('Array'), [nextArg])
+      return f.createTypeReferenceNode(f.createIdentifier('ArrayType'), [nextArg])
     }
 
     // Handle direct string type
@@ -304,6 +306,51 @@ ${output}`)
     const transformer = () => {
       return (sourceFile: ts.SourceFile) =>
         f.updateSourceFile(sourceFile, [...this.dateAndDateTimeImports(), ...sourceFile.statements])
+    }
+
+    const result = ts.transform(dbSourceFile, [transformer])
+    return result.transformed[0]!
+  }
+
+  /**
+   * @internal
+   *
+   * converts all array types (T[]) to readonly arrays (readonly T[])
+   * to provide type-level protection against mutating arrays returned
+   * from the database, which would not be persisted by a subsequent save.
+   */
+  private makeArraysReadonly(dbSourceFile: ts.SourceFile): ts.SourceFile {
+    const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
+      return sourceFile => {
+        const visitor = (node: ts.Node): ts.Node => {
+          // If this is already `readonly T[]`, just visit the inner element type
+          // to avoid double-wrapping
+          if (
+            ts.isTypeOperatorNode(node) &&
+            node.operator === ts.SyntaxKind.ReadonlyKeyword &&
+            ts.isArrayTypeNode(node.type)
+          ) {
+            const visitedElement = ts.visitNode(node.type.elementType, visitor) as ts.TypeNode
+            return f.createTypeOperatorNode(
+              ts.SyntaxKind.ReadonlyKeyword,
+              f.createArrayTypeNode(visitedElement)
+            )
+          }
+
+          // Convert T[] to readonly T[]
+          if (ts.isArrayTypeNode(node)) {
+            const visitedElement = ts.visitNode(node.elementType, visitor) as ts.TypeNode
+            return f.createTypeOperatorNode(
+              ts.SyntaxKind.ReadonlyKeyword,
+              f.createArrayTypeNode(visitedElement)
+            )
+          }
+
+          return ts.visitEachChild(node, visitor, context)
+        }
+
+        return ts.visitNode(sourceFile, visitor) as ts.SourceFile
+      }
     }
 
     const result = ts.transform(dbSourceFile, [transformer])

@@ -342,11 +342,11 @@ export type TableColumnEnumTypeArray<
   TableColumnMetadata extends TableColumns[Column & keyof TableColumns] = TableColumns[Column &
     keyof TableColumns],
   EnumTypeCandidate = TableColumnMetadata['enumArrayType' & keyof TableColumnMetadata],
-  EnumTypeArray extends string[] | null = EnumTypeCandidate extends null
+  EnumTypeArray extends readonly string[] | null = EnumTypeCandidate extends null
     ? null
     : EnumTypeCandidate extends undefined
       ? null
-      : EnumTypeCandidate extends string[]
+      : EnumTypeCandidate extends readonly string[]
         ? EnumTypeCandidate
         : never,
 > = EnumTypeArray
