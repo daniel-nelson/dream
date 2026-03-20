@@ -1,6 +1,7 @@
 import Dream from '../../../src/Dream.js'
 import CreateOrFindByFailedToCreateAndFind from '../../../src/errors/CreateOrFindByFailedToCreateAndFind.js'
 import Composition from '../../../test-app/app/models/Composition.js'
+import Pet from '../../../test-app/app/models/Pet.js'
 import User from '../../../test-app/app/models/User.js'
 
 describe('Dream.createOrFindBy', () => {
@@ -50,6 +51,16 @@ describe('Dream.createOrFindBy', () => {
       })
     }
   )
+
+  context('skipHooks is passed', () => {
+    it('skips model hooks on create', async () => {
+      await Pet.createOrFindBy({ species: 'dog' }, { createWith: { name: 'change me' }, skipHooks: true })
+
+      const pet = await Pet.first()
+      expect(pet!.name).toEqual('change me')
+      expect(await Pet.count()).toEqual(1)
+    })
+  })
 
   context('when a non-foreign-key-constraint related issue crops up', () => {
     beforeEach(() => {

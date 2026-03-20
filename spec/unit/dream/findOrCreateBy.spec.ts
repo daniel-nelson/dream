@@ -29,6 +29,26 @@ describe('Dream.findOrCreateBy', () => {
     })
   })
 
+  context('skipHooks is passed', () => {
+    it('skips model hooks on create', async () => {
+      await Pet.findOrCreateBy({ species: 'dog' }, { createWith: { name: 'change me' }, skipHooks: true })
+
+      const pet = await Pet.first()
+      expect(pet!.name).toEqual('change me')
+      expect(await Pet.count()).toEqual(1)
+    })
+
+    it('skips model hooks on find', async () => {
+      const existingPet = await Pet.create({ species: 'dog', name: 'Baron' })
+      const pet = await Pet.findOrCreateBy(
+        { species: 'dog' },
+        { createWith: { name: 'change me' }, skipHooks: true }
+      )
+
+      expect(pet.id).toEqual(existingPet.id)
+    })
+  })
+
   context('when provided an association', () => {
     it('is able to locate records in the database by the provided instance', async () => {
       const user = await User.create({ email: 'fred@frewd', password: 'howyadoin' })

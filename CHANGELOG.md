@@ -1,3 +1,7 @@
+## 2.5.5
+
+- add missing `skipHooks` support for `createOrFindBy` and `findOrCreateBy`
+
 ## 2.5.4
 
 - improve CLI descriptions
