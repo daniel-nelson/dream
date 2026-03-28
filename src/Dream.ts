@@ -142,7 +142,7 @@ import {
   VariadicLoadArgs,
 } from './types/variadic.js'
 
-const RECURSIVE_SERIALIZATION_MAX_REPEATS = 4
+export const RECURSIVE_SERIALIZATION_MAX_REPEATS = 4
 
 export default class Dream {
   public DB: any

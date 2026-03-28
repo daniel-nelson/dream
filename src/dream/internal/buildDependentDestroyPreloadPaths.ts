@@ -1,8 +1,8 @@
-import Dream from '../../Dream.js'
+import Dream, { RECURSIVE_SERIALIZATION_MAX_REPEATS } from '../../Dream.js'
 import { HasStatement } from '../../types/associations/shared.js'
 import { DreamClassAndAssociationNameTuple } from './extractNestedPaths.js'
 
-const MAX_REPEATS = 4
+const MAX_REPEATS = RECURSIVE_SERIALIZATION_MAX_REPEATS
 const dependentDestroyPreloadPathsCache = new Map<string, DreamClassAndAssociationNameTuple[][]>()
 
 /**
