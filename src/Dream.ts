@@ -1,6 +1,7 @@
 import { CompiledQuery, Selectable } from 'kysely'
 
 import yoctocolors from 'yoctocolors'
+import { RECURSIVE_SERIALIZATION_MAX_REPEATS } from './constants.js'
 import { pgErrorType, UNIQUE_VIOLATION } from './db/errors.js'
 import { VirtualAttributeStatement } from './decorators/field-or-getter/Virtual.js'
 import associationToGetterSetterProp from './decorators/field/association/associationToGetterSetterProp.js'
@@ -28,7 +29,6 @@ import {
   undestroyOptions,
 } from './dream/internal/destroyOptions.js'
 import ensureSTITypeFieldIsSet from './dream/internal/ensureSTITypeFieldIsSet.js'
-import { RecursiveSerializerInfo } from './dream/internal/extractNestedPaths.js'
 import findOrCreateBy from './dream/internal/findOrCreateBy.js'
 import printSerializerHierarchyLevel from './dream/internal/printSerializerHierarchyLevel.js'
 import reload from './dream/internal/reload.js'
@@ -125,6 +125,7 @@ import {
   QueryWithJoinedAssociationsType,
   QueryWithJoinedAssociationsTypeAndNoPreload,
 } from './types/query.js'
+import { RecursiveSerializerInfo } from './types/recursiveSerialization.js'
 import {
   DreamModelSerializerType,
   InternalAnyRendersOneOrManyOpts,
@@ -141,8 +142,6 @@ import {
   VariadicLeftJoinLoadArgs,
   VariadicLoadArgs,
 } from './types/variadic.js'
-
-export const RECURSIVE_SERIALIZATION_MAX_REPEATS = 4
 
 export default class Dream {
   public DB: any
